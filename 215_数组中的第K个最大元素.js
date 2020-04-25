@@ -36,10 +36,7 @@ const findKthLargest3 = function (nums, k) {
         const temp2 = nums[right]
         nums[right] = nums[store_index]
         nums[store_index] = temp2
-
         return store_index
-
-
     }
     const select = function (left, right, k_small) {
         if (left === right) {
