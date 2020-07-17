@@ -5,20 +5,27 @@
 // 解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
 
 const lengthOfLongestSubstring = function (s) {
-    let res = 0;
-    let tmpStr = '';
-    // i,j为活动窗口
-    for (let i = 0, j = 0; j < s.length; j++) {
-        if (tmpStr.indexOf(s[j]) !== -1) {
-            i = i + tmpStr.indexOf(s[j]) + 1
-            tmpStr = s.substring(i, j + 1)
-        } else {
-            tmpStr = s.slice(i, j+1)
-            res = Math.max(res, tmpStr.length)
+    let left = 0
+    let right = 0
+
+    let window = ''
+    let length = 0
+    let max = 0
+
+    while (right < s.length) {
+        window += s[right]
+        right++
+        length++
+        while (window.indexOf(s[right - 1]) !== window.length - 1) {
+            length--
+            max = Math.max(max, length)
+            window = window.slice(1)
+            left++
         }
     }
-    return res
-};
+    max = Math.max(max, length)
+    return max
+}
 
-res = lengthOfLongestSubstring('pwwkew')
+res = lengthOfLongestSubstring(" ")
 console.log(res)
