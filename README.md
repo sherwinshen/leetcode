@@ -100,6 +100,15 @@ function traverse(head) {
 
 
 
+## 常见问题思路
+
+- 两数之和问题，通常思路是排序再通过双指针来实现，或者通过 HashMap 或者 HashSet 处理无序数组的相关问题，注意在解决算法问题是要善于借助不同的数据结构来实现。
+- 巧用前缀和来解决问题，[前缀和优化](https://github.com/labuladong/fucking-algorithm/blob/master/算法思维系列/前缀和技巧.md)。
+
+
+
+
+
 ------
 
 如果发现本项目有错误，欢迎提交 issues 指正。
