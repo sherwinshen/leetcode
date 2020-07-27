@@ -9,7 +9,7 @@
 // 现在的目标就转化为，最坏情况下的最优解即 dp(K,N)= min(max(dp(K-1,X-1),dp(K,N-X))),其中1<=X<=N
 // 特殊情况：K为1，则dp(K,N)=N，即只能慢慢往上找，当N为0，则dp(K,N)=0
 
-superEggDrop = function (K, N) {
+const superEggDrop = function (K, N) {
     function dp(k, n) {
         if (k === 1 || n === 1 || n === 2) {
             return n;
@@ -17,7 +17,7 @@ superEggDrop = function (K, N) {
         let lo = 1;
         let hi = n;
         while (lo + 1 < hi) {
-            let x = parseInt((lo + hi) / 2);
+            let x = (lo + hi) >> 1;
             let t1 = dp(k - 1, x - 1)
             let t2 = dp(k, n - x)
             if (t1 < t2) {
@@ -34,5 +34,5 @@ superEggDrop = function (K, N) {
     return dp(K, N);
 }
 
-const result = superEggDrop(2,6)
+const result = superEggDrop(3, 25)
 console.log(result)

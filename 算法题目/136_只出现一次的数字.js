@@ -19,3 +19,5 @@ const singleNumber2 = function (nums) {
     }
     return nums[0];
 };
+
+

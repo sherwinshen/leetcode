@@ -20,24 +20,44 @@
  * @return {ListNode}
  */
 const addTwoNumbers = function (l1, l2) {
-    let initNode = new ListNode(-1)
-    let flag = initNode
-    let temp = 0
+    const head = new ListNode(-1)
+    let cur = head
+    let add = 0
     while (l1 !== null && l2 !== null) {
-        let sum = l1.val + l2.val + temp
-        if (sum > 19) {
-            temp = 2
-        } else if (sum > 9) {
-            temp = 1
+        const num = l1.val + l2.val + add
+        if (num < 10) {
+            cur.next = new ListNode(num)
+            add = 0
+        } else if (num < 20) {
+            cur.next = new ListNode(num - 10)
+            add = 1
         } else {
-            temp = 0
+            cur.next = new ListNode(num - 20)
+            add = 2
         }
-        flag.next = new ListNode(sum - 10 * temp)
-        flag = flag.next
+        l1 = l1.next
+        l2 = l2.next
+        cur = cur.next
     }
-    if (temp !== 0) {
-        flag.next = new ListNode(temp)
+    let temp = l1 === null ? l2 : l1
+    while (temp !== null) {
+        const num = temp.val + add
+        if (num < 10) {
+            cur.next = new ListNode(num)
+            add = 0
+        } else if (num < 20) {
+            cur.next = new ListNode(num - 10)
+            add = 1
+        } else {
+            cur.next = new ListNode(num - 20)
+            add = 2
+        }
+        temp = temp.next
+        cur = cur.next
     }
-    return initNode.next
+    if(add!==0){
+        cur.next = new ListNode(add)
+    }
+    return head.next
 };
 

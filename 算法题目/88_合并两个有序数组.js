@@ -29,7 +29,7 @@ const merge2 = function (nums1, m, nums2, n) {
             nums1[index] = nums2[j_index];
             j_index--;
         }
-        index --;
+        index--;
     }
     while (j_index >= 0) {
         nums1[index] = nums2[j_index];

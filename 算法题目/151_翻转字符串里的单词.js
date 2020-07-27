@@ -4,12 +4,8 @@
 // 输出: "blue is sky the"
 
 const reverseWords = function (s) {
-    let arr = s.split(' ');
-    let newArr = arr.filter(value => {
-        return value !== '';
-    })
-    newArr.reverse();
-    return newArr.join(' ');
+    return s.split(' ').filter((item) => item !== '').reverse().join(' ')
 };
+
 res = reverseWords("a good   example")
 console.log(res)

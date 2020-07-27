@@ -18,42 +18,36 @@ const findKthLargest2 = function (nums, k) {
 
 // 方法3：快速排序，左右子数组某一个的长度大于k则，目标值一定在该子数组中
 const findKthLargest3 = function (nums, k) {
-    const partition = function (left, right, pivot_index) {
-        const pivot = nums[pivot_index]
-        const temp = nums[pivot_index]
-        nums[pivot_index] = nums[right]
-        nums[right] = temp
-
-        let store_index = left
-        for (let i = left; i < right; i++) {
-            if (nums[i] < pivot) {
-                const temp = nums[store_index]
-                nums[store_index] = nums[i]
-                nums[i] = temp
-                store_index += 1
+    const partition = function (low, high) {
+        const pivot = nums[low]
+        while (low < high) {
+            while (low < high && nums[high] < pivot) {
+                high--
             }
+            nums[low] = nums[high]
+            while (low < high && nums[low] >= pivot) {
+                low++
+            }
+            nums[high] = nums[low]
         }
-        const temp2 = nums[right]
-        nums[right] = nums[store_index]
-        nums[store_index] = temp2
-        return store_index
+        nums[low] = pivot
+        return low
     }
-    const select = function (left, right, k_small) {
-        if (left === right) {
-            return nums[left]
-        } else {
-            const pivot_index = partition(left, right, left)
-            if (pivot_index === k_small) {
-                return nums[pivot_index]
-            } else if (k_small < pivot_index) {
-                return select(left, pivot_index - 1, k_small)
+    const sort = function (low, high) {
+        if (low < high) {
+            const index = partition(low, high)
+            if (index === k - 1) {
+                return true
+            } else if (index < k - 1) {
+                sort(index + 1, high)
             } else {
-                return select(pivot_index + 1, right, k_small)
+                sort(low, index - 1)
             }
-        }
 
+        }
     }
-    return select(0, nums.length - 1, nums.length - k)
+    sort(0, nums.length - 1)
+    return nums[k - 1]
 };
 
 const res = findKthLargest3([3, 2, 1, 5, 6, 4], 2)

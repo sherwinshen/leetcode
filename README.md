@@ -4,7 +4,7 @@
 
 作者：[Envision](https://github.com/MrEnvision)         联系邮箱：[EnvisionShen@gmail.com](mailto:EnvisionShen@gmail.com)
 
-参考资料：[fucking-algorithm](https://github.com/labuladong/fucking-algorithm)
+参考资料：[fucking-algorithm](https://github.com/labuladong/fucking-algorithm)   个人总结：[背诵记忆版](算法笔记/背诵记忆版.md)
 
 
 
@@ -102,10 +102,24 @@ function traverse(head) {
 
 ## 常见问题思路
 
-- 两数之和问题，通常思路是排序再通过双指针来实现，或者通过 HashMap 或者 HashSet 处理无序数组的相关问题，注意在解决算法问题是要善于借助不同的数据结构来实现。
+- 两数之和问题，通常思路是排序再通过双指针来实现，或者通过 HashMap 或者 HashSet 处理无序数组的相关问题，注意在解决算法问题是要善于借助不同的数据结构来实现， 链表问题也可以借助数组来解决。
 - 巧用前缀和来解决问题，[前缀和优化](https://github.com/labuladong/fucking-algorithm/blob/master/算法思维系列/前缀和技巧.md)。
+- 递归是一种解题思维方式，递归代码最重要的两个特征：结束条件和自我调用。自我调用是在解决子问题，而结束条件定义了最简子问题的答案。
 
+```js
+function func(){
+  // 最简子问题，结束条件
+  // 自我调用，缩小规模
+}
+```
 
+- 分治算法可以分三步走：分解 -> 解决 -> 合并
+
+```
+1.分解原问题为结构相同的子问题。
+2.分解到某个容易求解的边界之后，进行第归求解。
+3.将子问题的解合并成原问题的解。
+```
 
 
 

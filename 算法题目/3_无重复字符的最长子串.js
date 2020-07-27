@@ -4,28 +4,49 @@
 // 输出: 3
 // 解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
 
+// 滑动窗口问题
 const lengthOfLongestSubstring = function (s) {
     let left = 0
     let right = 0
 
     let window = ''
-    let length = 0
     let max = 0
 
     while (right < s.length) {
         window += s[right]
         right++
-        length++
         while (window.indexOf(s[right - 1]) !== window.length - 1) {
-            length--
-            max = Math.max(max, length)
             window = window.slice(1)
             left++
         }
+        max = Math.max(max, right - left)
     }
-    max = Math.max(max, length)
+    max = Math.max(max, right - left)
     return max
 }
 
-res = lengthOfLongestSubstring(" ")
+// const lengthOfLongestSubstring = function (s) {
+//     let left = 0
+//     let right = 0
+//
+//     let window = ''
+//     let length = 0
+//     let max = 0
+//
+//     while (right < s.length) {
+//         window += s[right]
+//         right++
+//         length++
+//         while (window.indexOf(s[right - 1]) !== window.length - 1) {
+//             length--
+//             max = Math.max(max, length)
+//             window = window.slice(1)
+//             left++
+//         }
+//     }
+//     max = Math.max(max, length)
+//     return max
+// }
+
+res = lengthOfLongestSubstring("bbbb")
 console.log(res)

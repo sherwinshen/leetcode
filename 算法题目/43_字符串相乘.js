@@ -36,11 +36,34 @@ const multiply = function (num1, num2) {
     return res.reverse().join('');
 };
 
-
 const multiply2 = function(num1, num2) {
     return (BigInt(num1)*BigInt(num2)).toString();
 };
 
+// 参考思路：https://github.com/labuladong/fucking-algorithm/blob/master/算法思维系列/字符串乘法.md
+const multiply3 = function (num1, num2) {
+    num1 = num1.split('')
+    num2 = num2.split('')
+    let flag_1 = num1.length - 1
+    let flag_2 = num2.length - 1
+    let res = new Array(flag_1 + flag_2 + 2).fill(0)
+    for (let i = flag_1; i >= 0; i--) {
+        for (let j = flag_2; j >= 0; j--) {
+            const mul = (num1[i] - '0') * (num2[j] - '0')
+            const p1 = i + j
+            const p2 = i + j + 1;
+            const sum = mul + res[p2];
+            res[p2] = sum % 10;
+            res[p1] += (sum - res[p2]) / 10;
+        }
+    }
+    let index = 0
+    for (; index < res.length-1; index++) {
+        if(res[index] !== 0) break
+    }
+    res = res.slice(index).join('')
+    return res
+};
 
-res = multiply2("123456789", "987654321")
+res = multiply("123456789", "987654321")
 console.log(res)

@@ -50,7 +50,6 @@ const lowestCommonAncestor2 = function (root, p, q) {
                 let right = getPath(node.right, target, [...temp, node.right])
                 if (right.length>0) return right
             }
-
         }
     }
 
