@@ -42,3 +42,33 @@ const permuteUnique = function (nums) {
 
 res = permuteUnique([1, 1, 2])
 console.log(res)
+
+
+// 全排列
+function permuteUnique(nums) {
+    let result = []
+    const length = nums.length
+    if (nums.length === 0) return result
+    nums.sort()
+    const backtrack = function (paths, options) {
+        if (paths.length === length) {
+            result.push(paths)
+            return true;
+        }
+        for (let i = 0; i < options.length; i++) {
+            if (i + 1 <= options.length - 1 && options[i] === options[i + 1]) {
+                continue
+            }
+            const newPaths = [...paths, options[i]]
+            const newOptions = [...options]
+            newOptions.splice(i, 1)
+            backtrack(newPaths, newOptions)
+        }
+
+    }
+    backtrack([], nums)
+    return result
+}
+
+const res_permuteUnique = permuteUnique([1, 1, 2])
+console.log('permuteUnique', res_permuteUnique)

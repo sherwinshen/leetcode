@@ -35,5 +35,5 @@ const firstUniqChar2 = function (s) {
 };
 
 
-result = firstUniqChar2('loveleetcode')
+const result = firstUniqChar2('loveleetcode')
 console.log(result)
