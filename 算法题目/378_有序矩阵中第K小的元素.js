@@ -9,6 +9,10 @@
 // k = 8,
 // 返回 13。
 
+// 方法1：将二维矩阵转成一维矩阵，然后排序即可
+// const kthSmallest = function (matrix, k) {
+//     return matrix.flat(Infinity).sort((a, b) => a - b)[k - 1]
+// }
 
 // 方法：找出二维矩阵中最小的数left，最大的数right，那么第k小的数必定在left~right之间，通过寻找小于等于mid的元素个数count来不断二分知道找到
 const kthSmallest = function (matrix, k) {
@@ -43,9 +47,9 @@ const kthSmallest = function (matrix, k) {
 
 let res = kthSmallest([
     [1, 5, 9],
-    [10, 11, 13],
-    [12, 13, 15]
-], 5)
+    [10, 11, 120],
+    [12, 120, 200]
+], 7)
 
 console.log(res)
 

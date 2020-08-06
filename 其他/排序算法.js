@@ -1,22 +1,9 @@
-# 排序算法
-
-简介：本文总结了部分排序算法-JS版 ，完整笔记详见[算法专题](https://github.com/MrEnvision/LeetCode_JS)        
-
-作者：[SherwinShen](https://github.com/MrEnvision)         联系邮箱：[EnvisionShen@gmail.com](mailto:EnvisionShen@gmail.com)
-
-
-
-<img src='../img/总结.png'>
-
-
-
-```js
-// 直接插入排序
+// 直接插入排序 - 每一次元素逐步与前面已排好的元素比较，然后放到对应的位置中去
 function insertSort(array) {
     for (let i = 1; i < array.length; i++) {
         const temp = array[i]
         let j
-        for (j = i - 1; j > 0; j--) {
+        for (j = i - 1; j >= 0; j--) {
             if (array[j] > temp) {
                 array[j + 1] = array[j]
             } else {
@@ -31,7 +18,7 @@ function insertSort(array) {
 const res_insertSort = insertSort([1, 6, 3, 5, 89, 34, 1, 1, 3, 3])
 console.log('insertSort', res_insertSort)
 
-// 希尔排序
+// 希尔排序 —— 改进自直接插入排序，设定一定的步长来进行插入排序
 function shellSort(array) {
     let gap = Math.floor(array.length / 2)
     while (gap) {
@@ -55,7 +42,7 @@ function shellSort(array) {
 const res_shellSort = shellSort([1, 6, 3, 5, 89, 34, 1, 1, 3, 3])
 console.log('shellSort', res_shellSort)
 
-// 折半插入排序
+// 折半插入排序 - 改进自直接插入排序，每次通过折半查找在前面已排好的元素中找到当前的元素位置，然后再移动
 function binaryInsertSort(array) {
     const binarySearch = function (i, target) {
         let left = 0
@@ -84,7 +71,7 @@ function binaryInsertSort(array) {
 const res_binaryInsertSort = binaryInsertSort([1, 6, 3, 5, 89, 34, 1, 1, 3, 3])
 console.log('binaryInsertSort', res_binaryInsertSort)
 
-// 归并排序
+// 归并排序 - 直观上为，两两排序归并，直到合并为长度为n的有序数组，实现过程中采用递归，从中间分割，两部分递归，然后归并
 function mergeSort(array) {
     const merge = function (arr1, arr2) {
         let result = []
@@ -112,13 +99,12 @@ function mergeSort(array) {
         return merge(left_arr, right_arr)
     }
     return recursion(array)
-
 }
 
 const res_mergeSort = mergeSort([1, 6, 3, 5, 89, 34, 1, 1, 3, 3])
 console.log('mergeSort', res_mergeSort)
 
-// 选择排序
+// 选择排序 - 每一次都选择为排序元素中最小的放到对应位置
 function selectSort(array) {
     const swap = function (i, j) {
         const temp = array[i]
@@ -146,7 +132,7 @@ function selectSort(array) {
 const res_selectSort = selectSort([1, 6, 3, 5, 89, 34, 1, 1, 3, 3])
 console.log('selectSort', res_selectSort)
 
-// 冒泡排序
+// 冒泡排序 - 不断冒泡交换，每一趟排序将未排序中最大的元素放到了位置，不要忘了还有跳出冒泡的设置
 function bubbleSort(array) {
     const swap = function (i, j) {
         const temp = array[i]
@@ -169,7 +155,7 @@ function bubbleSort(array) {
 const res_bubbleSort = bubbleSort([1, 6, 3, 5, 89, 34, 1, 1, 3, 3])
 console.log('bubbleSort', res_bubbleSort)
 
-// 快速排序
+// 快速排序 - 选择一个基准，如果比基准小，则交换两个位置，一趟排序后基准左边都是比基准小的，右边都是比基准大的，并且基准在自身的位置上了
 function quickSort(array) {
     const partition = function (low, high) {
         const temp = array[low]
@@ -199,10 +185,3 @@ function quickSort(array) {
 
 const res_quickSort = quickSort([1, 6, 3, 5, 89, 34, 1, 1, 3, 3])
 console.log('quickSort', res_quickSort)
-```
-
-
-
-------
-
-如果发现本项目有错误，欢迎提交 issues 指正。
