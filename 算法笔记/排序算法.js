@@ -185,3 +185,56 @@ function quickSort(array) {
 
 const res_quickSort = quickSort([1, 6, 3, 5, 89, 34, 1, 1, 3, 3])
 console.log('quickSort', res_quickSort)
+
+// 堆排序 - 可结合「算法笔记/常用数据结构 - 堆」来理解
+function heapSort(array) {
+    const res = []
+    const length = array.length
+    const swap = function (i, j) {
+        const temp = array[i]
+        array[i] = array[j]
+        array[j] = temp
+    }
+    // 相当于添加元素
+    const addHeapItem = function (index) {
+        while (index > 0) {
+            const parIndex = Math.ceil(index / 2) - 1
+            if (array[index] < array[parIndex]) {
+                swap(index, parIndex)
+                index = parIndex
+            } else {
+                break
+            }
+        }
+    }
+    // 删除栈顶元素需要将栈顶和最后的元素交换，因此需要调整栈顶
+    const heapify = function () {
+        let index = 0
+        while (index < array.length) {
+            let left = array[2 * index + 1]
+            let right = array[2 * index + 2]
+            let tempIndex = left < right ? 2 * index + 1 : 2 * index + 2
+            if (array[tempIndex] < array[index]) {
+                swap(tempIndex, index)
+                index = tempIndex
+            } else {
+                break
+            }
+        }
+    }
+
+    // 形成小跟堆
+    for (let i = 0; i < length; i++) {
+        addHeapItem(i)
+    }
+    // 通过不断删除栈顶来达到排序的目的（栈顶一定是最小的元素）
+    for (let i = 0; i < length; i++) {
+        swap(0, array.length - 1)
+        res.push(array.pop())
+        heapify()
+    }
+    return res
+}
+
+const res_heapSort = heapSort([1, 6, 3, 5, 89, 34, 1, 1, 3, 3])
+console.log('heapSort', res_heapSort)
