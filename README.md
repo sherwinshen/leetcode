@@ -103,6 +103,8 @@ function traverse(head) {
 
 # 3. 算法解题框架
 
+常见题型主要包括：二分查找、双指针、滑动窗口、广度优先搜索、深度优先搜索、回溯、递归、动态规划、位运算等
+
 ## 3.1 常见解题框架
 
 - [动态规划解题框架](./notes/动态规划解题框架.md)
@@ -137,4 +139,3 @@ function recursion(){
 ------
 
 如果发现本项目有错误，欢迎提交 issues 或联系 [Sherwin](https://github.com/sherwinshen)。
-
